@@ -1,0 +1,22 @@
+{
+  "name": "weirdpets",
+  "version": "1.0.0",
+  "description": "Weirdpets are companions to Weirdpunks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weirdpunks/weirdpets.git"
+  },
+  "author": "Cyborg2050",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/weirdpunks/weirdpets/issues"
+  },
+  "homepage": "https://github.com/weirdpunks/weirdpets#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.1"
+  }
+}
