@@ -1,6 +1,6 @@
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721Full.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol";
 
 // Tamagotchi NFT contract
 contract WeirdPets is ERC721 {
@@ -29,7 +29,6 @@ contract WeirdPets is ERC721 {
         Bathe,
         Upgrade
     }
-    // Enum for WeirdPet weapon types
 
     enum WeaponTypes {
         none,
@@ -40,8 +39,6 @@ contract WeirdPets is ERC721 {
         axe
     }
 
-    // Enum for WeirdPet weapon types
-
     enum ArmorTypes {
         none,
         plate,
@@ -51,8 +48,6 @@ contract WeirdPets is ERC721 {
         shields
     }
 
-    // Struct for WeirdPet Attributes
-
     struct SpeciesAttributes {
         uint8 strength;
         uint8 intelligence;
@@ -61,8 +56,6 @@ contract WeirdPets is ERC721 {
         uint8 agility;
     }
 
-    // Struct for WeirdPet Stats
-
     struct SpeciesStats {
         uint256 age;
         uint8 hunger;
@@ -70,7 +63,7 @@ contract WeirdPets is ERC721 {
         uint8 happiness;
     }
 
-    // Struct for WeirdPet
+    // Struct for WeirdPet NFTs
     struct WeirdPetsData {
         uint256 id;
         address owner;
@@ -84,8 +77,6 @@ contract WeirdPets is ERC721 {
         bool isAlive;
     }
 
-    // Struct for WeirdPet lifespan. In the future this can be used to create a more dynamic Lifespan
-
     struct LifeSpan {
         Species species;
         uint256 lifeSpan;
@@ -93,23 +84,12 @@ contract WeirdPets is ERC721 {
 
     // Mapping from WeirdPet ID to WeirdPet data
     mapping(uint256 => WeirdPetsData) public WeirdPets;
-
-    // Mapping from WeirdPet ID to WeirdPet data
     mapping(uint256 => WeirdPetsData) public onSaleWeirdPets;
-
-    // Mapping from WeirdPet ID to WeirdPet data
     mapping(uint256 => uint256) public WeirdPetPrices;
-
-    // Mapping from WeirdPet ID to WeirdPet data
     mapping(address => uint256) public WeirdPetOwners;
-
     // Array of all WeirdPet IDs
     uint256[] public WeirdPetIds;
-
-    // Array of all WeirdPet IDs
-    LifeSpan[] public lifeSpans;
-
-    // Array of all WeirdPet IDs
+    //LifeSpan[] public lifeSpans;
     uint256[] onSalePets;
 
     constructor() ERC721("Petz", "WEIRDOS") {
@@ -148,7 +128,7 @@ contract WeirdPets is ERC721 {
             species = Species.Alien;
         }
 
-        WeirdPetsData memory WeirdPet = WeirdPetsData({
+        WeirdPetsData memory NewWeirdPet = WeirdPetsData({
             id: id,
             owner: msg.sender,
             species: species,
@@ -172,7 +152,8 @@ contract WeirdPets is ERC721 {
             isAlive: true
         });
 
-        _safeMint(msg.sender, id);
+        WeirdPets[id] = NewWeirdPet;
+        _safeMint(msg.sender, id++);
         WeirdPetIds.push(id);
     }
 
